@@ -1,0 +1,995 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Test Video</title>
+
+    <!-- M PLUS Rounded 1c -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        /* ========================================
+           Rounded Soft-Minimalism
+           ======================================== */
+
+        :root {
+            --background: #fcfcfd;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-hover: #334155;
+            --display: #f8fafc;
+            --border: #f1f5f9;
+            --accent: #2563eb;
+            --subtitle: #64748b;
+            --hint: #94a3b8;
+
+            --card-radius: 24px;
+            --box-radius: 16px;
+            --button-radius: 12px;
+
+            --card-shadow:
+                0 20px 25px -5px rgba(0, 0, 0, 0.05),
+                0 8px 10px -6px rgba(0, 0, 0, 0.01);
+
+            --small-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.05),
+                0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            margin: 0;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 32px 20px;
+
+            background: var(--background);
+            color: var(--text);
+
+            font-family:
+                'M PLUS Rounded 1c',
+                sans-serif;
+
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* ========================================
+           Main Card
+           ======================================== */
+
+        .player-card {
+            width: 100%;
+            max-width: 460px;
+
+            padding: 36px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: var(--card-radius);
+
+            box-shadow: var(--card-shadow);
+        }
+
+        /* ========================================
+           Header
+           ======================================== */
+
+        .header {
+            margin-bottom: 24px;
+        }
+
+        .eyebrow {
+            margin: 0 0 6px;
+
+            color: var(--subtitle);
+
+            font-size: 0.82rem;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+        }
+
+        .title {
+            margin: 0;
+
+            color: var(--text);
+
+            font-size: 1.7rem;
+            line-height: 1.25;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .description {
+            margin: 8px 0 0;
+
+            color: var(--subtitle);
+
+            font-size: 0.8rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ========================================
+           Password Screen
+           ======================================== */
+
+        .password-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+
+            padding: 26px 0 4px;
+        }
+
+        .lock-icon {
+            width: 64px;
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            background: var(--display);
+
+            color: var(--text);
+
+            font-size: 26px;
+
+            box-shadow: var(--small-shadow);
+        }
+
+        .password-title {
+            margin: 0;
+
+            text-align: center;
+
+            color: var(--text);
+
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
+
+        .password-description {
+            margin: 7px 0 20px;
+
+            text-align: center;
+
+            color: var(--subtitle);
+
+            font-size: 0.8rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .password-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .password-input {
+            width: 100%;
+            height: 48px;
+
+            padding: 0 16px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--box-radius);
+
+            outline: none;
+
+            background: var(--display);
+            color: var(--text);
+
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 400;
+
+            text-align: center;
+            letter-spacing: 0.08em;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .password-input::placeholder {
+            color: var(--hint);
+            letter-spacing: 0;
+        }
+
+        .password-input:focus {
+            border-color: rgba(37, 99, 235, 0.35);
+
+            box-shadow:
+                0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .password-input.error {
+            border-color: #ef4444;
+
+            animation: shake 0.35s ease;
+        }
+
+        .unlock-button {
+            width: 100%;
+            height: 48px;
+
+            border: 0;
+            border-radius: var(--button-radius);
+
+            background: var(--text);
+            color: #ffffff;
+
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow: var(--small-shadow);
+
+            transition:
+                background 0.2s ease,
+                transform 0.15s ease;
+        }
+
+        .unlock-button:hover {
+            background: var(--text-hover);
+        }
+
+        .unlock-button:active {
+            transform: scale(0.96);
+        }
+
+        .password-error {
+            min-height: 18px;
+
+            margin: 8px 0 0;
+
+            color: #ef4444;
+
+            text-align: center;
+
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+
+        /* ========================================
+           Video
+           ======================================== */
+
+        .video-screen {
+            display: none;
+        }
+
+        .video-screen.unlocked {
+            display: block;
+        }
+
+        .video-container {
+            width: 100%;
+
+            overflow: hidden;
+
+            background: #000;
+
+            border: 1px solid var(--border);
+            border-radius: var(--box-radius);
+
+            box-shadow: var(--small-shadow);
+        }
+
+        .video-container video {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            aspect-ratio: 16 / 9;
+
+            object-fit: contain;
+
+            background: #000;
+        }
+
+        /* ========================================
+           Information
+           ======================================== */
+
+        .video-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 14px;
+            padding: 0 2px;
+        }
+
+        .file-name {
+            color: var(--subtitle);
+
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
+            color: var(--hint);
+
+            font-size: 0.75rem;
+            font-weight: 100;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #94a3b8;
+        }
+
+        .status-dot.playing {
+            background: #2563eb;
+        }
+
+        /* ========================================
+           Controls
+           ======================================== */
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+
+            margin-top: 24px;
+        }
+
+        button.control-button {
+            min-height: 44px;
+
+            padding: 10px 16px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--button-radius);
+
+            background: #ffffff;
+            color: var(--text);
+
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow: var(--small-shadow);
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.15s ease;
+        }
+
+        button.control-button:hover {
+            background: #f8fafc;
+            color: var(--text-hover);
+        }
+
+        button.control-button:active {
+            transform: scale(0.96);
+        }
+
+        button.control-button.primary {
+            background: var(--text);
+            color: #ffffff;
+            border-color: var(--text);
+        }
+
+        button.control-button.primary:hover {
+            background: var(--text-hover);
+            color: #ffffff;
+        }
+
+        /* ========================================
+           Hint
+           ======================================== */
+
+        .hint {
+            margin: 18px 0 0;
+
+            color: var(--hint);
+
+            text-align: center;
+
+            font-size: 0.75rem;
+            line-height: 1.6;
+            font-weight: 100;
+        }
+
+        /* ========================================
+           Toast
+           ======================================== */
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 28px;
+
+            transform:
+                translate(-50%, 20px)
+                scale(0.95);
+
+            padding: 10px 18px;
+
+            border-radius: 30px;
+
+            background: var(--text);
+            color: #ffffff;
+
+            font-size: 0.8rem;
+            font-weight: 700;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transition:
+                opacity 0.3s ease,
+                transform 0.45s cubic-bezier(
+                    0.68,
+                    -0.55,
+                    0.27,
+                    1.55
+                );
+
+            z-index: 100;
+        }
+
+        .toast.show {
+            opacity: 1;
+
+            transform:
+                translate(-50%, 0)
+                scale(1);
+        }
+
+        /* ========================================
+           Animation
+           ======================================== */
+
+        @keyframes shake {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-6px);
+            }
+
+            75% {
+                transform: translateX(6px);
+            }
+        }
+
+        /* ========================================
+           Responsive
+           ======================================== */
+
+        @media (max-width: 520px) {
+
+            body {
+                padding: 20px 14px;
+            }
+
+            .player-card {
+                padding: 28px 22px;
+                border-radius: 22px;
+            }
+
+            .title {
+                font-size: 1.45rem;
+            }
+
+            .controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="player-card">
+
+        <!-- ====================================
+             Header
+             ==================================== -->
+
+        <header class="header">
+            <p class="eyebrow">PRIVATE VIDEO</p>
+
+            <h1 class="title">
+                Test Video
+            </h1>
+
+            <p class="description">
+                この動画を再生するにはパスワードが必要です。
+            </p>
+        </header>
+
+
+        <!-- ====================================
+             Password Screen
+             ==================================== -->
+
+        <section
+            id="passwordScreen"
+            class="password-screen"
+        >
+
+            <div class="lock-icon">
+                🔒
+            </div>
+
+            <h2 class="password-title">
+                パスワード保護
+            </h2>
+
+            <p class="password-description">
+                パスワードを入力して動画のロックを解除してください。
+            </p>
+
+            <form
+                id="passwordForm"
+                class="password-form"
+            >
+
+                <input
+                    id="passwordInput"
+                    class="password-input"
+                    type="password"
+                    placeholder="パスワード"
+                    autocomplete="off"
+                    spellcheck="false"
+                    required
+                >
+
+                <button
+                    class="unlock-button"
+                    type="submit"
+                >
+                    ロックを解除
+                </button>
+
+            </form>
+
+            <p
+                id="passwordError"
+                class="password-error"
+                aria-live="polite"
+            ></p>
+
+        </section>
+
+
+        <!-- ====================================
+             Video Screen
+             ==================================== -->
+
+        <section
+            id="videoScreen"
+            class="video-screen"
+        >
+
+            <div class="video-container">
+
+                <video
+                    id="videoPlayer"
+                    preload="metadata"
+                    controls
+                    playsinline
+                >
+                    <source
+                        src="./Test.mp4"
+                        type="video/mp4"
+                    >
+
+                    お使いのブラウザは動画再生に対応していません。
+                </video>
+
+            </div>
+
+            <div class="video-info">
+
+                <span class="file-name">
+                    Test.mp4
+                </span>
+
+                <span class="status">
+
+                    <span
+                        id="statusDot"
+                        class="status-dot"
+                    ></span>
+
+                    <span id="statusText">
+                        停止中
+                    </span>
+
+                </span>
+
+            </div>
+
+            <div class="controls">
+
+                <button
+                    id="playButton"
+                    class="control-button primary"
+                    type="button"
+                >
+                    再生
+                </button>
+
+                <button
+                    id="restartButton"
+                    class="control-button"
+                    type="button"
+                >
+                    最初から
+                </button>
+
+            </div>
+
+            <p class="hint">
+                動画下部のコントロールから音量・シーク・全画面表示を操作できます。
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- Toast -->
+
+    <div
+        id="toast"
+        class="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <script>
+
+        /* ========================================
+           Password
+           ======================================== */
+
+        const PASSWORD = "Jingoro";
+
+
+        /* ========================================
+           Elements
+           ======================================== */
+
+        const passwordForm =
+            document.getElementById("passwordForm");
+
+        const passwordInput =
+            document.getElementById("passwordInput");
+
+        const passwordError =
+            document.getElementById("passwordError");
+
+        const passwordScreen =
+            document.getElementById("passwordScreen");
+
+        const videoScreen =
+            document.getElementById("videoScreen");
+
+        const video =
+            document.getElementById("videoPlayer");
+
+        const playButton =
+            document.getElementById("playButton");
+
+        const restartButton =
+            document.getElementById("restartButton");
+
+        const statusText =
+            document.getElementById("statusText");
+
+        const statusDot =
+            document.getElementById("statusDot");
+
+        const toast =
+            document.getElementById("toast");
+
+
+        /* ========================================
+           Toast
+           ======================================== */
+
+        let toastTimer = null;
+
+        function showToast(message) {
+
+            toast.textContent = message;
+
+            toast.classList.add("show");
+
+            clearTimeout(toastTimer);
+
+            toastTimer = setTimeout(() => {
+
+                toast.classList.remove("show");
+
+            }, 1800);
+        }
+
+
+        /* ========================================
+           Password Authentication
+           ======================================== */
+
+        passwordForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                const enteredPassword =
+                    passwordInput.value;
+
+                /* 正しいパスワード */
+
+                if (enteredPassword === PASSWORD) {
+
+                    passwordError.textContent = "";
+
+                    passwordScreen.style.display = "none";
+
+                    videoScreen.classList.add("unlocked");
+
+                    passwordInput.value = "";
+
+                    showToast("ロックを解除しました");
+
+                    return;
+                }
+
+
+                /* 間違ったパスワード */
+
+                passwordError.textContent =
+                    "パスワードが正しくありません。";
+
+                passwordInput.classList.add("error");
+
+                passwordInput.select();
+
+                setTimeout(() => {
+
+                    passwordInput.classList.remove("error");
+
+                }, 400);
+            }
+        );
+
+
+        /* ========================================
+           Video Status
+           ======================================== */
+
+        function updateStatus() {
+
+            if (video.ended) {
+
+                statusText.textContent =
+                    "再生終了";
+
+                statusDot.classList.remove(
+                    "playing"
+                );
+
+                playButton.textContent =
+                    "もう一度再生";
+
+                return;
+            }
+
+
+            if (!video.paused) {
+
+                statusText.textContent =
+                    "再生中";
+
+                statusDot.classList.add(
+                    "playing"
+                );
+
+                playButton.textContent =
+                    "一時停止";
+
+                return;
+            }
+
+
+            statusText.textContent =
+                "停止中";
+
+            statusDot.classList.remove(
+                "playing"
+            );
+
+            playButton.textContent =
+                "再生";
+        }
+
+
+        /* ========================================
+           Play / Pause
+           ======================================== */
+
+        playButton.addEventListener(
+            "click",
+            async function () {
+
+                if (video.ended) {
+
+                    video.currentTime = 0;
+                }
+
+
+                if (video.paused) {
+
+                    try {
+
+                        await video.play();
+
+                    } catch (error) {
+
+                        showToast(
+                            "動画を再生できませんでした"
+                        );
+
+                        console.error(error);
+                    }
+
+                } else {
+
+                    video.pause();
+                }
+
+                updateStatus();
+            }
+        );
+
+
+        /* ========================================
+           Restart
+           ======================================== */
+
+        restartButton.addEventListener(
+            "click",
+            function () {
+
+                video.currentTime = 0;
+
+                video.play()
+                    .then(() => {
+
+                        updateStatus();
+
+                        showToast(
+                            "最初から再生します"
+                        );
+                    })
+                    .catch(() => {
+
+                        updateStatus();
+
+                        showToast(
+                            "動画を最初に戻しました"
+                        );
+                    });
+            }
+        );
+
+
+        /* ========================================
+           Video Events
+           ======================================== */
+
+        video.addEventListener(
+            "play",
+            updateStatus
+        );
+
+        video.addEventListener(
+            "pause",
+            updateStatus
+        );
+
+        video.addEventListener(
+            "ended",
+            function () {
+
+                updateStatus();
+
+                showToast(
+                    "動画の再生が終了しました"
+                );
+            }
+        );
+
+        video.addEventListener(
+            "loadedmetadata",
+            updateStatus
+        );
+
+        video.addEventListener(
+            "error",
+            function () {
+
+                statusText.textContent =
+                    "読み込みエラー";
+
+                statusDot.classList.remove(
+                    "playing"
+                );
+
+                showToast(
+                    "Test.mp4 を読み込めませんでした"
+                );
+            }
+        );
+
+
+        /* ========================================
+           Initial State
+           ======================================== */
+
+        updateStatus();
+
+        passwordInput.focus();
+
+    </script>
+
+</body>
+</html>
+```
